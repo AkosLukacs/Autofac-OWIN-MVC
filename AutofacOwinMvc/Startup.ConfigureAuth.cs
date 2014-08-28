@@ -25,6 +25,9 @@ namespace AutofacOwinMvc
         {
           OnValidateIdentity = ctx => {
             var ret = Task.Run(() => {
+
+              System.Diagnostics.Trace.WriteLine("MiniProfiler.Current in OnValidateIdentity:" + ((MiniProfiler.Current == null) ? "null" : "exists"));
+
               using(var step = MiniProfiler.StepStatic("@OnValidateIdentity")) {
 
                 var ex = ctx.OwinContext.GetAutofacLifetimeScope().Resolve<AutofacOwinMvc.Example.ExampleService>();
