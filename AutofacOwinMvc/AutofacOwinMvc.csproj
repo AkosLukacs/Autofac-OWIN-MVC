@@ -179,6 +179,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Compile Include="DummyAuth\DummyUser.cs" />
+    <Compile Include="DummyAuth\DummyUserManager.cs" />
+    <Compile Include="DummyAuth\DummyUserStore.cs" />
     <Compile Include="Startup.ConfigureAuth.cs">
       <DependentUpon>Startup.cs</DependentUpon>
     </Compile>
