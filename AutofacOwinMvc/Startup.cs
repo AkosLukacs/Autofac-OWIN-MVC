@@ -11,7 +11,7 @@ using Owin;
 
 namespace AutofacOwinMvc
 {
-	public class Startup
+	public partial class Startup
 	{
 		public void Configuration(IAppBuilder app)
 		{
@@ -46,6 +46,10 @@ namespace AutofacOwinMvc
 			app.UseAutofacWebApi(config);
 			app.UseAutofacMvc();
 			app.UseWebApi(config);
+
+      configureAuth(app);
 		}
+
+   
 	}
 }

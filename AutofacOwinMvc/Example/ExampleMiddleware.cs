@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Autofac.Integration.Owin;
 using Autofac;
+using StackExchange.Profiling;
 
 namespace AutofacOwinMvc.Example
 {
@@ -18,7 +19,10 @@ namespace AutofacOwinMvc.Example
     public override async System.Threading.Tasks.Task Invoke(IOwinContext context) {
       var s = context.GetAutofacLifetimeScope().Resolve<ExampleService>();
 
-      s.nop("from ExampleMiddleware");
+      using(var step = StackExchange.Profiling.MiniProfiler.StepStatic("In the OWIN middlweare...")) {
+        s.nop("from ExampleMiddleware");
+        System.Threading.Thread.Sleep(42);
+      }
 
       await Next.Invoke(context);
     }

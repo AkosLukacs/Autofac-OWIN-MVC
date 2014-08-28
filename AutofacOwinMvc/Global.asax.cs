@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackExchange.Profiling;
+using System;
 using System.Web.Mvc;
 
 namespace AutofacOwinMvc
@@ -15,6 +16,17 @@ namespace AutofacOwinMvc
 									  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
 									  );
 
+      GlobalFilters.Filters.Add(new StackExchange.Profiling.Mvc.ProfilingActionFilter());
 		}
+
+
+    protected void Application_BeginRequest(object sender, EventArgs e) {
+      MiniProfiler.Start();
+    }
+
+
+    protected void Application_EndRequest(object sender, EventArgs e) {
+      MiniProfiler.Stop();
+    }
 	}
 }
